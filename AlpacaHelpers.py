@@ -1,6 +1,7 @@
 import alpaca_trade_api as tradeapi
 
-# HELPFUL ALPACA FUNCTIONS by Micah Yong (June 10, 2019)
+# HELPFUL ALPACA FUNCTIONS written in Python by Micah Yong (June 10, 2019)
+# Included in this script are helpful print statements and examples (commented out)
 
 api = tradeapi.REST(
     key_id = 'PK9W7HAA9WD0N6AUWA9O', # REPLACE WITH YOUR OWN KEY ID
@@ -9,6 +10,35 @@ api = tradeapi.REST(
 )
 
 # USER SPECIFIC FUNCTIONS AND SUBMISSIONS
+def accountIsBlocked():
+    """
+    :return: True if account is blocked; false otherwise
+    """
+    # Get our account information.
+    account = api.get_account()
+
+    # Check if our account is restricted from trading.
+    if account.trading_blocked:
+        print('Account is currently restricted from trading.')
+    else:
+        print('Account is valid for trading.')
+    return account.trading_blocked
+
+print(accountIsBlocked())
+
+def getBuyingPower():
+    """
+    :return: account buying power
+    """
+    # Get our account information.
+    account = api.get_account()
+    # Check how much money we can use to open new positions.
+    print('${} is available as buying power.'.format(account.buying_power))
+    return account.buying_power
+
+print(getBuyingPower())
+
+
 def buyOrder(ticker, quantity):
     """
     Standard order submission to buy in market
@@ -77,7 +107,8 @@ def buyOrderWithClientID(ticker, quantity, clientID):
         print("Error purchasing {} shares of {}".format(quantity, ticker))
         return ""
 
-print(buyOrderWithClientID('AAPL', 5, 'my_first_order'))
+# print(buyOrderWithClientID('AAPL', 5, 'my_first_order'))
+
 
 def getPosition(ticker):
     """
@@ -99,6 +130,7 @@ def getPosition(ticker):
 
 # getPosition('AAPL')
 
+
 def listAllPositions():
     """
     :return: prints and returns all positions in portfolio
@@ -112,7 +144,8 @@ def listAllPositions():
 
     return portfolio
 
-listAllPositions()
+# listAllPositions()
+
 
 def listLastNOrders(N):
     """
@@ -126,7 +159,8 @@ def listLastNOrders(N):
     )
     return closed_orders
 
-listLastNOrders(5)
+# listLastNOrders(5)
+
 
 def listLastNOrdersForCompany(N, ticker):
     """
@@ -144,7 +178,6 @@ def listLastNOrdersForCompany(N, ticker):
     return closed_comp_orders
 
 # listLastNOrdersForCompany(5, 'AAPL')
-
 
 
 # GENERAL FUNCTIONS AND QUERIES
