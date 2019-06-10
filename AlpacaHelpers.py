@@ -10,6 +10,7 @@ api = tradeapi.REST(
 )
 
 # USER SPECIFIC FUNCTIONS AND SUBMISSIONS
+
 def accountIsBlocked():
     """
     :return: True if account is blocked; false otherwise
@@ -265,6 +266,3 @@ def isTradable(ticker):
 
 # print(isTradable('AAPL'))
 # print(isTradable('gbdfv'))
-
-
-
