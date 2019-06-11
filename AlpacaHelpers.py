@@ -25,7 +25,7 @@ def accountIsBlocked():
         print('Account is valid for trading.')
     return account.trading_blocked
 
-print(accountIsBlocked())
+# print(accountIsBlocked())
 
 def getBuyingPower():
     """
@@ -37,7 +37,7 @@ def getBuyingPower():
     print('${} is available as buying power.'.format(account.buying_power))
     return account.buying_power
 
-print(getBuyingPower())
+# print(getBuyingPower())
 
 
 def buyOrder(ticker, quantity):
@@ -200,6 +200,7 @@ def percentChange(ticker, timeUnit, numUnits):
     print(ticker + " moved " + str(percent_change) + "% over the last " + str(numUnits) + " " + timeUnit + "s.")
     return percent_change
 
+percentChange('AAPL', 'day', 1000)
 # percentChange('MSFT', 'day', 5)
 
 def getNASDAQ():
@@ -239,10 +240,11 @@ def marketTimes(t):
     print('The market opened at {} and closed at {} on {}.'.format(
         calendar.open,
         calendar.close,
-        date
+        calendar.date
     ))
     return [calendar.open, calendar.close]
 
+marketTimes('2018-01-10')
 # todayMarketTimes = marketTimes('2019-06-10')
 # print(todayMarketTimes)
 
